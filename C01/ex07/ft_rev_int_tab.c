@@ -1,5 +1,5 @@
-#include <stdio.h>
-
+//#include <stdio.h>
+//
 void ft_rev_int_tab(int *tab, int size)
 {
 	int	i;
@@ -14,7 +14,7 @@ void ft_rev_int_tab(int *tab, int size)
 		i++;
 	}
 }
-
+/*
 int	main(void)
 {
 	int num[] = {10, 11, 12, 13, 1};
@@ -24,4 +24,4 @@ int	main(void)
 	ft_rev_int_tab(num, size);
 	printf("%d", num[0]);
 	printf("%d", num[size - 1]);
-}
+}*/
