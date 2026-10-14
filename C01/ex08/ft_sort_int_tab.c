@@ -1,5 +1,5 @@
-#include <stdio.h>
-
+//#include <stdio.h>
+//
 void	ft_sort_int_tab(int *tab, int size)
 {
 	int	tmp;
@@ -23,7 +23,7 @@ void	ft_sort_int_tab(int *tab, int size)
 		i++;
 	}
 }
-
+/*
 int	main(void)
 {
 	int	num[] = {3, 4, -2, 5, -1};
@@ -36,4 +36,4 @@ int	main(void)
 	printf("%d", num[2]);
 	printf("%d", num[3]);
 	printf("%d", num[4]);
-}
+}*/
