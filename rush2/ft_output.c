@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void ft_output(int n, int result[n][n])
+void	ft_output(int n, int result[n][n])
 {
 	int	i;
 	int	j;

@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	*ft_parse_input(char *str, int *lst, int n)
+int	*ft_parse_input(char *str, int *input, int n)
 {
 	int	i;
 //	int	*lst;
@@ -30,12 +30,12 @@ int	*ft_parse_input(char *str, int *lst, int n)
 		else if (str[i]  < '1' || str[i] - '0' > n)
 			return (0);
 		else 
-			lst[i / 2] = str[i] - '0';
+			input[i / 2] = str[i] - '0';
 		i++;
 	}
 	if (i != 8 * n - 1)
 		return (0);
-	return (lst);
+	return (1);
 }
 
 int	main(void)
