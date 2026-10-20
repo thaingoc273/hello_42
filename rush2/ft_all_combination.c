@@ -44,7 +44,7 @@ void	ft_pop_path(char *cbn)
 	}		
 }
 
-void	ft_print_all_combination(int start_idx, char *cbn, char *lst_alpha, int *found)
+int	ft_print_all_combination(int start_idx, char *cbn, char *lst_alpha)
 {
 	int	i;
 	int	len;
@@ -55,8 +55,7 @@ void	ft_print_all_combination(int start_idx, char *cbn, char *lst_alpha, int *fo
 	if (start_idx == len)
 	{
 		ft_print_path(cbn);
-		*found = 1;
-		return;
+		return (1);
 	}
 	else
 	{
@@ -65,10 +64,9 @@ void	ft_print_all_combination(int start_idx, char *cbn, char *lst_alpha, int *fo
 		{
 			ft_add_path(cbn, lst_alpha[i]);
 			i++;
-			ft_print_all_combination(start_idx + 1, cbn, lst_alpha, found);
+			if (ft_print_all_combination(start_idx + 1, cbn, lst_alpha));
+					return (1);
 			ft_pop_path(cbn);
-			if (*found == 1)
-				return;
 		}
 	}
 }
@@ -81,5 +79,5 @@ int	main(void)
 	found = 0;
 	char	*lst_alpha;
 	lst_alpha = "ABC";	
-	ft_print_all_combination(0, cbn, lst_alpha, &found);
+	ft_print_all_combination(0, cbn, lst_alpha);
 }

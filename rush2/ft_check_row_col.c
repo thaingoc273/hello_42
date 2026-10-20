@@ -22,7 +22,7 @@ int	ft_count_visible_building(int *lst, int n)
 	return (count);
 }
 
-int	ft_check_row_left(int r, int value, int n, int result[n][n])
+int	ft_check_row_left(int r, int value, int n, int **result)
 {
 	int	array[n];
 	int	i;
@@ -37,7 +37,7 @@ int	ft_check_row_left(int r, int value, int n, int result[n][n])
 		return (1);
 	return (0);
 }
-int	ft_check_row_right(int r, int value, int n, int result[n][n])
+int	ft_check_row_right(int r, int value, int n, int **result)
 {
 	int	array[n];
 	int	i;
@@ -53,7 +53,7 @@ int	ft_check_row_right(int r, int value, int n, int result[n][n])
 	return (0);
 }
 
-int	ft_check_col_top(int c, int value, int n, int result[n][n])
+int	ft_check_col_top(int c, int value, int n, int **result)
 {
 	int	array[n];
 	int	i;
@@ -63,6 +63,7 @@ int	ft_check_col_top(int c, int value, int n, int result[n][n])
 	{
 		array[i] = result[i][c];
 		i++;
+		printf("Gia tri cua colum %d", result[i][c]);
 	}
 	if (ft_count_visible_building(array, n) == value)
 		return (1);
@@ -70,7 +71,7 @@ int	ft_check_col_top(int c, int value, int n, int result[n][n])
 }
 
 
-int	ft_check_col_bottom(int c, int value, int n, int result[n][n])
+int	ft_check_col_bottom(int c, int value, int n, int **result)
 {
 	int	array[n];
 	int	i;
@@ -85,7 +86,7 @@ int	ft_check_col_bottom(int c, int value, int n, int result[n][n])
 		return (1);
 	return (0);
 }
-
+/*
 void main()
 {
 	int	array[] = {3, 4, 1, 2};
@@ -97,4 +98,6 @@ void main()
 			};
 //	printf("%d/n", ft_count_visible_building(array, 4));
 	printf("%d\n", ft_check_row_left(0, 4, 4, result));		
-}
+	printf("%d\n", ft_check_row_left(1, 3, 4, result));		
+	printf("%d\n", ft_check_row_left(2, 2, 4, result));		
+}*/

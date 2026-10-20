@@ -1,7 +1,7 @@
 #include <unistd.h>
-#include <stdio.h>
+//#include <stdio.h>
 
-void	ft_output(int n, int result[n][n])
+void ft_output(int n, int result[n][n])
 {
 	int	i;
 	int	j;
@@ -22,7 +22,7 @@ void	ft_output(int n, int result[n][n])
 		i++;
 	}
 }
-
+/*
 int	main(void)
 {
 	int result[4][4] = {
@@ -32,4 +32,4 @@ int	main(void)
 			{4, 1, 2, 3}
 				};
 	ft_output(4, result);
-}
+}*/
