@@ -7,6 +7,7 @@ void	ft_output(int n, int **result);
 int	get_size(char *str);
 int	solver(int idx, int n, int *input, int **result);
 int	ft_check_col_top(int c, int value, int n, int **result);
+int	ft_check_row_left(int c, int value, int n, int **result);
 
 int	**initialize_result(int n)
 {
@@ -46,12 +47,19 @@ void	assign_initial_value(int n, int **result)
 {
 	int	i;
 	int	j;
-
+	
 	i = 0;
 	j = 0;
 	while (i < n)
+	{	
 		while (j < n)
+		{
 			result[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+
 }
 
 void	free_grid_input(int **result, int *input, int n)
@@ -106,9 +114,15 @@ int	main(int argc, char **argv)
 	input = initialize_input(n);
 	result = initialize_result(n);
 	assign_initial_value(n, result);
+	if (input == NULL || result == NULL)
+	{
+		free_grid_input(result, input, n);
+		return (1);
+	}
 	print_result(n, str, input, result);
 
-	printf("Size of grid %d", n);
+	printf("Size of grid %d\n", n);
 	//printf("Value of grid at (1,1) %d", result[1][1]);
-	printf("%d", ft_check_col_top(0, 4, 4, result));
+	printf("Col %d\n", ft_check_col_top(0, 4, 4, result));
+	printf("Row %d\n", ft_check_row_left(0, 3, 4, result));
 }

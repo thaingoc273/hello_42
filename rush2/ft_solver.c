@@ -73,12 +73,12 @@ int	solver(int idx, int n, int *input, int **result)
 	int	value;
 	
 	if (idx == n * n)
-		return (ft_validate_height(idx, n, input, result));	
+		return (1);	
 	value = 1;
 	while (value <= n)
 	{
-		if (ft_can_place(idx, value, n, result))
-			//if (ft_validate_height(idx, n, input, result))
+		if (ft_can_place(idx, value, n, result)
+			&& (ft_validate_height(idx, n, input, result)))
 			{				
 				ft_put_value(idx, value, n, result);
 				if (solver(idx + 1, n, input, result))

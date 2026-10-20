@@ -32,6 +32,7 @@ int	ft_check_row_left(int r, int value, int n, int **result)
 	{
 		array[i] = result[r][i];
 		i++;
+		printf("%d", array[i]);
 	}
 	if (ft_count_visible_building(array, n) == value)
 		return (1);
@@ -63,7 +64,6 @@ int	ft_check_col_top(int c, int value, int n, int **result)
 	{
 		array[i] = result[i][c];
 		i++;
-		printf("Gia tri cua colum %d", result[i][c]);
 	}
 	if (ft_count_visible_building(array, n) == value)
 		return (1);
