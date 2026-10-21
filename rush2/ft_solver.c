@@ -1,5 +1,5 @@
-//#include <unistd.h>
-//#include <stdio.h>
+#include <unistd.h>
+#include <stdio.h>
 
 int ft_check_row_left(int r, int value, int n, int **result);
 int ft_check_row_right(int r, int value, int n, int **result);
@@ -55,6 +55,7 @@ int	ft_validate_height(int idx,  int n, int *input, int **result)
 		if (ft_check_col_bottom(c, input[n + c], n, result) == 0)
 			return (0);
 	}
+//	printf("Gia tri index %d\n", idx);
 	return (1);
 }
 
@@ -71,20 +72,25 @@ void	ft_put_value(int idx, int value, int n, int **result)
 int	solver(int idx, int n, int *input, int **result)
 {
 	int	value;
+	int	i;
 	
 	if (idx == n * n)
+	{
 		return (1);	
+	}
 	value = 1;
 	while (value <= n)
 	{
-		if (ft_can_place(idx, value, n, result)
-			&& (ft_validate_height(idx, n, input, result)))
-			{				
-				ft_put_value(idx, value, n, result);
+		if (ft_can_place(idx, value, n, result))
+		{
+			ft_put_value(idx, value, n, result);
+			if (ft_validate_height(idx, n, input, result))
+			{
 				if (solver(idx + 1, n, input, result))
 					return (1);
-				ft_put_value(idx, 0, n, result);
 			}
+			ft_put_value(idx, 0, n, result);
+		}
 		value++;
 	}
 	return (0);

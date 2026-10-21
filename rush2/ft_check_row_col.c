@@ -31,8 +31,8 @@ int	ft_check_row_left(int r, int value, int n, int **result)
 	while (i < n)
 	{
 		array[i] = result[r][i];
+		//printf("Number %d is  %d\n", i, array[i]);
 		i++;
-		printf("%d", array[i]);
 	}
 	if (ft_count_visible_building(array, n) == value)
 		return (1);
@@ -40,32 +40,32 @@ int	ft_check_row_left(int r, int value, int n, int **result)
 }
 int	ft_check_row_right(int r, int value, int n, int **result)
 {
-	int	array[n];
+	int	arr[n];
 	int	i;
 
 	i = 0;
 	while (i < n)
 	{
-		array[i] = result[r][n - i - 1];
+		arr[i] = result[r][n - i - 1];
 		i++;
 	}
-	if (ft_count_visible_building(array, n) == value)
+	if (ft_count_visible_building(arr, n) == value)
 		return (1);
 	return (0);
 }
 
 int	ft_check_col_top(int c, int value, int n, int **result)
 {
-	int	array[n];
+	int	arr[n];
 	int	i;
 
 	i = 0;
 	while (i < n)
 	{
-		array[i] = result[i][c];
+		arr[i] = result[i][c];
 		i++;
 	}
-	if (ft_count_visible_building(array, n) == value)
+	if (ft_count_visible_building(arr, n) == value)
 		return (1);
 	return (0);
 }
@@ -73,16 +73,16 @@ int	ft_check_col_top(int c, int value, int n, int **result)
 
 int	ft_check_col_bottom(int c, int value, int n, int **result)
 {
-	int	array[n];
+	int	arr[n];
 	int	i;
 
 	i = 0;
 	while (i < n)
 	{
-		array[i] = result[n - i - 1][c];
+		arr[i] = result[n - i - 1][c];
 		i++;
 	}
-	if (ft_count_visible_building(array, n) == value)
+	if (ft_count_visible_building(arr, n) == value)
 		return (1);
 	return (0);
 }

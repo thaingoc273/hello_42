@@ -29,7 +29,7 @@ int	ft_parse_input(char *str, int *input, int n)
 			return (0);
 		else 
 			input[i / 2] = str[i] - '0';
-		i++;
+		i++;		
 	}
 	return ((i +1) % 8 == 0);
 }

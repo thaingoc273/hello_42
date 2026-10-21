@@ -59,7 +59,18 @@ void	assign_initial_value(int n, int **result)
 		}
 		i++;
 	}
+}
 
+void assign_initial_input(int n, int *input)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		input[i] = 0;
+		i++;
+	}
 }
 
 void	free_grid_input(int **result, int *input, int n)
@@ -78,17 +89,31 @@ void	free_grid_input(int **result, int *input, int n)
 	free(input);
 }
 
+void	ft_putstr(char * str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+}
+
 int	print_result(int n, char *str, int *input, int **result)
 {
 	if (!(ft_parse_input(str, input, n)))
 	{
-		write(1, "Errorparse\n", 11);
+		ft_putstr("Errorparse\n");
 		return (0);
 	}
 	if (solver(0, n, input, result))
+	{
 		ft_output(n, result);
+	}
 	else
-		write(1, "Errornotfindsol\n", 15);
+		ft_putstr("Errornosol\n");
 	return (1);	
 }
 
@@ -101,19 +126,20 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(1, "Errorargv\n", 10);
+		ft_putstr("Error arg not macht\n");
 		return (0);
 	}
 	n = get_size(argv[1]);
 	if (n == 0)
 	{
-		write(1, "Errorsize\n", 10);
+		ft_putstr("Error input invalid");
 		return (0);
 	}
 	str = argv[1];
 	input = initialize_input(n);
 	result = initialize_result(n);
 	assign_initial_value(n, result);
+	assign_initial_input(n, input);
 	if (input == NULL || result == NULL)
 	{
 		free_grid_input(result, input, n);
@@ -121,8 +147,6 @@ int	main(int argc, char **argv)
 	}
 	print_result(n, str, input, result);
 
-	printf("Size of grid %d\n", n);
+	//printf("Size of grid %d\n", n);
 	//printf("Value of grid at (1,1) %d", result[1][1]);
-	printf("Col %d\n", ft_check_col_top(0, 4, 4, result));
-	printf("Row %d\n", ft_check_row_left(0, 3, 4, result));
 }
