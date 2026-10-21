@@ -45,11 +45,7 @@ int	print_result(int n, char *str, int *input, int **result)
 		ft_putstr("Errorparse\n");
 		return (0);
 	}
-	if (solver(0, n, input, result))
-	{
-		ft_output(n, result);
-	}
-	else
+	if (!solver(0, n, input, result))
 		ft_putstr("Errornosol\n");
 	return (1);	
 }

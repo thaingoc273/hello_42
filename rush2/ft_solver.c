@@ -9,6 +9,17 @@ void ft_output(int n, int **result);
 
 static int is_solvable;
 
+void	ft_put_value(int idx, int value, int n, int **result)
+{
+	int	r;
+	int	c;
+	
+	r = idx / n;
+	c = idx % n;
+	result[r][c] = value;
+}
+
+
 int	ft_can_place(int idx, int value, int n, int **result)
 {
 	int	i;
@@ -31,6 +42,7 @@ int	ft_can_place(int idx, int value, int n, int **result)
 			return (0);
 		i++;
 	}
+	ft_put_value(idx, value, n, result);
 	return (1);
 }
 
@@ -58,43 +70,30 @@ int	ft_validate_height(int idx,  int n, int *input, int **result)
 	return (1);
 }
 
-void	ft_put_value(int idx, int value, int n, int **result)
-{
-	int	r;
-	int	c;
-	
-	r = idx / n;
-	c = idx % n;
-	result[r][c] = value;
-}
 
 int	solver(int idx, int n, int *input, int **result)
 {
 	int	value;
+	int	found;
 	
 	if (idx == n * n)
 	{	
-		if (ft_validate_height(idx - 1, n, input, result))
-			ft_output(n, result);
+		ft_output(n, result);
 		write(1, "\n", 1);
-//		*found = 1;
-//		return (1);
+		return (1);
 	}
+	found = 0;
 	value = 1;
 	while (value <= n)
 	{
 		if (ft_can_place(idx, value, n, result))
 		{
-			ft_put_value(idx, value, n, result);
 			if (ft_validate_height(idx, n, input, result))
-			{
-				solver(idx + 1, n, input, result);
-//				if (solver(idx + 1, n, input, result))
-//					return (1);
-			}
+				if (solver(idx + 1, n, input, result))
+					found = 1;
 			ft_put_value(idx, 0, n, result);
 		}
 		value++;
 	}
-	//return (is_solvable);	
+	return (found);
 }
