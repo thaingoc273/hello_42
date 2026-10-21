@@ -5,7 +5,9 @@ int ft_check_row_left(int r, int value, int n, int **result);
 int ft_check_row_right(int r, int value, int n, int **result);
 int ft_check_col_top(int c, int value, int n, int **result);
 int ft_check_col_bottom(int c, int value, int n, int **result);
+void ft_output(int n, int **result);
 
+static int is_solvable;
 
 int	ft_can_place(int idx, int value, int n, int **result)
 {
@@ -69,11 +71,12 @@ void	ft_put_value(int idx, int value, int n, int **result)
 int	solver(int idx, int n, int *input, int **result)
 {
 	int	value;
-	int	i;
 	
 	if (idx == n * n)
-	{
-		return (1);	
+	{	
+		//ft_output(n, result);
+		is_solvable = 1;
+//		return (1);
 	}
 	value = 1;
 	while (value <= n)
@@ -90,5 +93,5 @@ int	solver(int idx, int n, int *input, int **result)
 		}
 		value++;
 	}
-	return (0);	
+	return (is_solvable);	
 }
