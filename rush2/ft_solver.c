@@ -74,8 +74,10 @@ int	solver(int idx, int n, int *input, int **result)
 	
 	if (idx == n * n)
 	{	
-		//ft_output(n, result);
-		is_solvable = 1;
+		if (ft_validate_height(idx - 1, n, input, result))
+			ft_output(n, result);
+		write(1, "\n", 1);
+//		*found = 1;
 //		return (1);
 	}
 	value = 1;
@@ -86,12 +88,13 @@ int	solver(int idx, int n, int *input, int **result)
 			ft_put_value(idx, value, n, result);
 			if (ft_validate_height(idx, n, input, result))
 			{
-				if (solver(idx + 1, n, input, result))
-					return (1);
+				solver(idx + 1, n, input, result);
+//				if (solver(idx + 1, n, input, result))
+//					return (1);
 			}
 			ft_put_value(idx, 0, n, result);
 		}
 		value++;
 	}
-	return (is_solvable);	
+	//return (is_solvable);	
 }
