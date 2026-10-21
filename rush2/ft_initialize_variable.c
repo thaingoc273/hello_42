@@ -1,12 +1,13 @@
 #include <stdlib.h>
 
-int	initialize_result(int n, int **result)
+int	**initialize_result(int n)
 {
 	int	i;
+	int	**result;
 
 	result = malloc(n * sizeof(int *));
 	if (result == NULL)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
@@ -20,15 +21,17 @@ int	initialize_result(int n, int **result)
 		}
 		i++;
 	}
-	return (1);
+	return (result);
 }
 
-int	initialize_input(int n, int *input)
+int	*initialize_input(int n)
 {
+	int	*input;
+
 	input = malloc(4 * n * sizeof(int));
 	if (input == NULL)
-		return (0);
-	return (1);
+		return (NULL);
+	return (input);
 }
 
 void	assign_initial_value(int n, int **result)
@@ -37,9 +40,9 @@ void	assign_initial_value(int n, int **result)
 	int	j;
 	
 	i = 0;
-	j = 0;
 	while (i < n)
-	{	
+	{
+		j = 0;
 		while (j < n)
 		{
 			result[i][j] = 0;
@@ -54,25 +57,22 @@ void assign_initial_input(int n, int *input)
 	int	i;
 
 	i = 0;
-	while (i < n)
+	while (i < 4 * n)
 	{
 		input[i] = 0;
 		i++;
 	}
 }
-
 void	free_grid_input(int **result, int *input, int n)
 {
 	int	i;
 
-	if (result == NULL)
-		return ;
-	i = 0;
-	while (i < n)
+	if (result != NULL)
 	{
-		free(result[i]);
-		i++;
+		i = 0;
+		while (i < n)
+			free(result[i++]);
+		free(result);
 	}
-	free(result);
 	free(input);
 }
