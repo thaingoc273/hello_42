@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdlib.h>
-//#include <stdio.h>
-
 int	ft_parse_input(char *str, int *input, int n)
 {
 	int	i;
@@ -33,6 +30,7 @@ int	ft_parse_input(char *str, int *input, int n)
 	}
 	return ((i +1) % 8 == 0);
 }
+
 int	get_size(char *str)
 {
 	int	i;
@@ -44,24 +42,3 @@ int	get_size(char *str)
 		return ((i + 1) / 8);
 	return (0);
 }
-/*
-int	main(void)
-{
-	char	*test = "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2";
-	int		n;
-	int		*lst;
-
-	printf("Kich thuoc cua mang: %d", get_size(test));
-	if (get_size(test) != 0)
-	{
-		n = get_size(test);
-		lst = malloc(n * 4 * sizeof(int));
-		ft_parse_input(test, lst, n);
-	}	
-	if (!lst)
-		printf("Format error");
-	else
-		printf("Format right");
-	
-	return (0);
-}*/

@@ -1,6 +1,3 @@
-#include <unistd.h>
-#include <stdio.h>
-
 int	ft_count_visible_building(int *lst, int n)
 {
 	int	i;
@@ -31,7 +28,6 @@ int	ft_check_row_left(int r, int value, int n, int **result)
 	while (i < n)
 	{
 		array[i] = result[r][i];
-		//printf("Number %d is  %d\n", i, array[i]);
 		i++;
 	}
 	if (ft_count_visible_building(array, n) == value)
@@ -86,18 +82,3 @@ int	ft_check_col_bottom(int c, int value, int n, int **result)
 		return (1);
 	return (0);
 }
-/*
-void main()
-{
-	int	array[] = {3, 4, 1, 2};
-	int	result[4][4] = {
-   			 {1, 2, 3, 4},
-  			 {2, 3, 4, 1},
-  			 {3, 4, 1, 2},
-			 {4, 1, 2, 3}
-			};
-//	printf("%d/n", ft_count_visible_building(array, 4));
-	printf("%d\n", ft_check_row_left(0, 4, 4, result));		
-	printf("%d\n", ft_check_row_left(1, 3, 4, result));		
-	printf("%d\n", ft_check_row_left(2, 2, 4, result));		
-}*/

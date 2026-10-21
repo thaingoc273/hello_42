@@ -1,7 +1,10 @@
 #include <unistd.h>
-//#include <stdio.h>
+#include <stdio.h>
 
-void ft_output(int n, int **result)
+int	ft_parse_input(char *str, int *input, int n);
+int	solver(int idx, int n, int *input, int **result);
+
+void	ft_output(int n, int **result)
 {
 	int	i;
 	int	j;
@@ -22,14 +25,32 @@ void ft_output(int n, int **result)
 		i++;
 	}
 }
-/*
-int	main(void)
+
+void	ft_putstr(char *str)
 {
-	int result[4][4] = {
-			{1, 2, 3, 4},
-			{2, 3, 4, 1},
-			{3, 4, 1, 2},
-			{4, 1, 2, 3}
-				};
-	ft_output(4, result);
-}*/
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+}
+
+int	print_result(int n, char *str, int *input, int **result)
+{
+	if (!(ft_parse_input(str, input, n)))
+	{
+		ft_putstr("Errorparse\n");
+		return (0);
+	}
+	if (solver(0, n, input, result))
+	{
+		printf("Find solution");
+		ft_output(n, result);
+	}
+	else
+		ft_putstr("Errornosol\n");
+	return (1);	
+}

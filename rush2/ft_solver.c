@@ -7,8 +7,6 @@ int ft_check_col_top(int c, int value, int n, int **result);
 int ft_check_col_bottom(int c, int value, int n, int **result);
 
 
-
-
 int	ft_can_place(int idx, int value, int n, int **result)
 {
 	int	i;
@@ -55,7 +53,6 @@ int	ft_validate_height(int idx,  int n, int *input, int **result)
 		if (ft_check_col_bottom(c, input[n + c], n, result) == 0)
 			return (0);
 	}
-//	printf("Gia tri index %d\n", idx);
 	return (1);
 }
 
@@ -93,37 +90,5 @@ int	solver(int idx, int n, int *input, int **result)
 		}
 		value++;
 	}
-	return (0);
-	
+	return (0);	
 }
-/*
-int	main(int argc, char **argv)
-{
-	int	*input;
-	int	n = 4;
-	int	(*result)[n];
-	int	found;
-
-	result = malloc(4 * sizeof(*array))
-
-	if (argc != 2)
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	if (ft_parse_input(argv[1], input) == 0)
-		write(1, "Error\n", 1);
-		return (1);
-	else if (solver(0, 4, input, result, found) == 1)
-		ft_output(n, result);
-	else
-		write(1, "Error\n", 6);
-	int result[4][4] = {
-			{1, 2, 3, 4},
-			{2, 3, 4, 1},
-			{3, 4, 1, 2},
-			{4, 1, 2, 3}
-				};
-	printf("%d", ft_can_place(3, 3, 4, 4, result));
-
-}*/
