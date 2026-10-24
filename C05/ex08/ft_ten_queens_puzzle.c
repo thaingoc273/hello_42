@@ -6,7 +6,7 @@ void	print_board(int *board)
 	int	i;
 
 	i = 0;
-	while (i < 7)
+	while (i < 10)
 	{
 		c = board[i] + '0';
 		write(1, &c, 1);
@@ -26,7 +26,7 @@ int	is_save(int col, int row, int *board)
 			return (0);
 		if (i - board[i] == col - row)
 			return (0);
-		if (i - board[i] == row - col)
+		if (i + board[i] == row + col)
 			return (0);
 		i++;
 	}
@@ -38,17 +38,14 @@ void	ten_queens_recursive(int col, int *board, int *found)
 	int	row;
 
 	row = 0;
-	if (col == 6)
+	if (col == 11)
 	{
-		if (is_save(col, row, board))
-		{
 			print_board(board);
-			*found++;
-		}
+			(*found)++;
 	}
 	else
 	{
-		while (row < 7)
+		while (row < 10)
 		{
 			if (is_save(col, row, board))
 			{
@@ -62,12 +59,12 @@ void	ten_queens_recursive(int col, int *board, int *found)
 
 int	ft_ten_queens_puzzle(void)
 {
-	int board[7];
-	int	*found;
+	int board[10];
+	int	found;
 
-	*found = 0;
-	ten_queens_recursive(0, board, found);
-	return (*found);
+	found = 0;
+	ten_queens_recursive(0, board, &found);
+	return (found);
 
 }
 
@@ -75,5 +72,5 @@ int	ft_ten_queens_puzzle(void)
 
 int	main(void)
 {
-	printf("The number of valid solutions %d", ft_ten_queens_puzzle());
+	printf("The number of valid solutions %d\n", ft_ten_queens_puzzle());
 }
