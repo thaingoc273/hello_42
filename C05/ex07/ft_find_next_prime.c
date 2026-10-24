@@ -1,5 +1,3 @@
-#include <limits.h>
-
 int	ft_is_prime(int nb)
 {
 	int	i;
@@ -17,5 +15,21 @@ int	ft_is_prime(int nb)
 }
 int	ft_find_next_prime(int nb)
 {
-	
+	int	i;
+
+	i = nb;
+	while (true)
+	{
+		if (ft_is_prime(i) == 1)
+			return (i);
+		i++;
+	}
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	printf("The next prime number: %d\n", ft_find_next_prime(-10));
+	printf("The next prime number: %d\n", ft_find_next_prime(0));
+	printf("The next prime number: %d\n", ft_find_next_prime(50));
 }

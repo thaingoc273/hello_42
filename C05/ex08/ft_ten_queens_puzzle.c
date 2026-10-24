@@ -15,7 +15,7 @@ void	print_board(int *board)
 	write(1, "\n", 1);
 }
 
-int	is_save(int col, int row, int *board)
+int	is_safe(int col, int row, int *board)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ void	ten_queens_recursive(int col, int *board, int *found)
 	int	row;
 
 	row = 0;
-	if (col == 11)
+	if (col == 10)
 	{
 			print_board(board);
 			(*found)++;
@@ -47,7 +47,7 @@ void	ten_queens_recursive(int col, int *board, int *found)
 	{
 		while (row < 10)
 		{
-			if (is_save(col, row, board))
+			if (is_safe(col, row, board))
 			{
 				board[col] = row;
 				ten_queens_recursive(col + 1, board, found);

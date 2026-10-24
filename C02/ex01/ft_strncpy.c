@@ -3,7 +3,7 @@
 //
 char	*ft_strncpy(char *dest, char *scr, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (scr[i] != '\0')
