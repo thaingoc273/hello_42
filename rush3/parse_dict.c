@@ -95,40 +95,31 @@ int	open_file(char *dict_name)
 	return (fd);
 }
 
-int	parse_dict(char *dict_name, t_dict **dict)
+int	parse_dict(int fd, char *dict_name, t_dict **dict)
 {
 	int	entry_number;
 	char	*line;
-	int	fd;
 	t_dict	entry;
 
-	//line = malloc(1024 * sizeof(char));
 	*dict = malloc(1024 * sizeof(t_dict));	
 	if (dict == NULL)
-	{
-		close(fd);
 		return (0);
-	}
 	entry_number = 0;
-	fd = open_file(dict_name);
-	if (fd)
+	if (!fd)
+		return (0);	
+	while (read_line(fd, &line))
 	{
-		while (read_line(fd, &line))
+		if (extract_line(line, &entry))
 		{
-			if (extract_line(line, &entry))
+			if (*(entry.key) != '\0' && *(entry.value) != '\0')
 			{
-				if (*(entry.key) != '\0' && *(entry.value) != '\0')
-				{
-					(*dict)[entry_number].key = entry.key;
-					(*dict)[entry_number].value = entry.value;
-					entry_number++;
-				}
+				(*dict)[entry_number].key = entry.key;
+				(*dict)[entry_number].value = entry.value;
+				entry_number++;
 			}
-			else
-				return (0);
 		}
-		return (entry_number);
 	}
+	return (entry_number);
 }
 
 int	main(void)
@@ -157,7 +148,8 @@ int	main(void)
 //	printf("%s\n", entry.value);
 
 	i = 0;
-	entry_number = parse_dict(dict_name, &dict);
+	fd = open_file(dict_name);
+	entry_number = parse_dict(fd, dict_name, &dict);
 	if (!entry_number)
 		printf("Error dict\n");
 	else
