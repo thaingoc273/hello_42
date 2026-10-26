@@ -15,7 +15,7 @@ char	*ft_strcat(char *dest, char *src)
 		i++;
 		j++;
 	}
-	dest[i + 1] = '\0';
+	dest[i] = '\0';
 	return (dest);
 }
 

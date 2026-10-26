@@ -24,9 +24,10 @@ char	*ft_strstr(char *str, char *to_find)
 int	main(void)
 {
 	char	*str = "Hello everyone, this is 42berlin. I am a student";
-	char	*to_find = "thiss";
+	char	*to_find = "this";
 	char	*result;
 
 	result = ft_strstr(str, to_find);
-	printf("%s", result);
+	if (result != NULL)
+		printf("%s", result);
 }
