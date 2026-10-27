@@ -18,9 +18,11 @@ unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
 	unsigned int	src_len;
 	unsigned int	i;
 
-	dest_len = ft_strlen(dest);
+	dest_len = 0;
+	while (dest_len < size && dest[dest_len] != '\0')
+		dest_len++;
 	src_len = ft_strlen(src);
-	if (dest_len >= size)
+	if (dest_len == size)
 		return (size + src_len);
 	i = 0;
 	while (src[i] != '\0' && i < size - dest_len - 1)
@@ -37,6 +39,6 @@ int	main(void)
 	char	dest[30] = "Hello";
 	char	*src = "world";
 
-	printf("Total length %d\n", ft_strlcat(dest, src, 1));
+	printf("Total length %d\n", ft_strlcat(dest, src, 20));
 	printf("String after concaternation: %s\n", dest);
 }
