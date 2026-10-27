@@ -109,15 +109,14 @@ int	parse_dict(int fd, char *dict_name, t_dict **dict)
 		return (0);	
 	while (read_line(fd, &line))
 	{
-		if (extract_line(line, &entry))
-		{
-			if (*(entry.key) != '\0' && *(entry.value) != '\0')
+		if (!extract_line(line, &entry))
+			return (0);
+		if (*(entry.key) != '\0' && *(entry.value) != '\0')
 			{
 				(*dict)[entry_number].key = entry.key;
 				(*dict)[entry_number].value = entry.value;
 				entry_number++;
-			}
-		}
+			}	
 	}
 	return (entry_number);
 }
