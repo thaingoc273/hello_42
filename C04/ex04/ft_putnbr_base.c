@@ -47,7 +47,7 @@ int	ft_check_base(char *base)
 
 void	ft_putnbr_base_unsigned(int nbr, char *base, int n)
 {
-	char	c;
+	int	c;
 
 	if (nbr != 0)
 	{

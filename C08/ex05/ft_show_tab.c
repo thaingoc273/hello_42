@@ -27,10 +27,10 @@ void	ft_show_tab(struct s_stock_str *par)
 
 int	main(void)
 {
-	char	*lst_str[] = {"Hello", "42Berlin", "all"};
+	char	*lst_str[] = {"Hello", "world"};
 	struct s_stock_str	*stock_str;
 
-	stock_str = ft_strs_to_tab(3, &lst_str[0]);
+	stock_str = ft_strs_to_tab(2, &lst_str[0]);
 	ft_show_tab(stock_str);
 	return (0);
 }
