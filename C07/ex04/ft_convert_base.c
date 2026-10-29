@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <unistd.h>
 
 int ft_check_base(char *base);
 int	ft_atoi_base(char *str, char *base);
@@ -54,7 +53,7 @@ int main(void)
     str1 = "2147483647";
     str2 = " a---+--+1234ab567";
     str3 = "-- -+--+12a1234ab567";
-    base_from = "0123456789";
+    base_from = "00123456789";
 	base_to = "0123456789abcdef";
 	printf("Extracted string in new base: %s\n", ft_convert_base(str, base_from, base_to));
     printf("Extracted string in new base: %s\n", ft_convert_base(str1, base_from, base_to));
