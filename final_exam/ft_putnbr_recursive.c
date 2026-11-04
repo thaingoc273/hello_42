@@ -29,7 +29,7 @@ void	swap_str(char *str)
 	}
 }
 
-void	put_number_to_string(int nb, char *str, int i)
+int	put_number_to_string(int nb, char *str, int i)
 {
 //	long	n;
 //	cha	
@@ -37,21 +37,23 @@ void	put_number_to_string(int nb, char *str, int i)
 	if (nb < 0 && i == 0)
 	{
 		//n = -(long)nb;
-		*str = '-';
-		i++;
+		str[i++] = '-';
+		
 	}
 	if (nb >= 10 || nb <= -10)
-		put_number_to_string(nb / 10, str, i + 1);
+		i = put_number_to_string(nb / 10, str, i);
 	if (nb >= 0)
-		str[i] = nb % 10 + '0';
+		str[i++] = nb % 10 + '0';
 	else
-		str[i] = '0' - nb % 10;
+		str[i++] = '0' - nb % 10;
+	return (i);
 }
 
 char	*ft_putnbr_recursive(int nb)
 {
 char	*str;
 int		i;
+int		len;
 //char	*str_copy;
 
 i = 0;
@@ -61,9 +63,10 @@ while (i < 16)
 if (str == NULL)
 	return (NULL);
 //str_copy = str;
-put_number_to_string(nb, str, 0);
+len = put_number_to_string(nb, str, 0);
+str[len] = '\0';
 //str_copy = '\0';
-swap_str(str);
+//swap_str(str);
 return (str);
 }
 
