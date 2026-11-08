@@ -25,11 +25,6 @@ int		main(void)
 
 	while ((type = getop(s)) != EOF || type != ERROR)
 	{
-		if (type == '\n')
-		{
-			printf("\t %.8g\n", pop());
-			break;
-		}
 		switch (type)
 		{
 			case NUMBER:
@@ -51,6 +46,9 @@ int		main(void)
 					push(pop() / op2);
 				else
 					printf("Error; division by zero");
+				break;
+			case '\n':
+				printf("Value %.8g\n", pop());
 				break;
 			default:
 				printf("Error: unknown operator");
