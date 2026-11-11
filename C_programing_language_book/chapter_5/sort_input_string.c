@@ -9,7 +9,7 @@
 char	*lineptr[MAXLINES];
 int		readlines(char *lineptr[], int nlines);
 void	writelines(char *lineptr[], int nlines);
-void	ft_qsort(char *lineptr[], int lines);
+void	ft_qsort(char *lineptr[], int start, int end);
 
 int		main(void)
 {
@@ -17,7 +17,7 @@ int		main(void)
 
 	if ((nlines = readlines(lineptr, MAXLINES)) >= 0)
 	{
-	//	qsort(lineptr, nlines - 1);
+		ft_qsort(lineptr, 0, nlines - 1);
 		writelines(lineptr, nlines);
 		return (0);
 	}
@@ -25,6 +25,50 @@ int		main(void)
 	{
 		printf("Error: input error");
 		return (1);
+	}
+}
+
+void	swap_pointer(char **s1, char **s2)
+{
+	char	*tmp;
+
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
+}
+
+int		partition(char *lineptr[], int low, int high)
+{
+	char	*pivot;
+	char	*tmp;
+	int		i;
+	int		j;
+
+	pivot = lineptr[high];
+	i = low;
+	j = low;
+	while (j < high)
+	{
+		if (strcmp(lineptr[j], pivot) < 0)
+		{
+			swap_pointer(&lineptr[i], &lineptr[j]);
+			i++;
+		}
+		j++;
+	}
+	swap_pointer(&lineptr[i], &lineptr[high]);
+	return (i);
+}
+
+void	ft_qsort(char *lineptr[], int start, int end)
+{
+	int		i;
+
+	if (start < end)
+	{
+		i = partition(lineptr, start, end);
+		ft_qsort(lineptr, start, i - 1);
+		ft_qsort(lineptr, i + 1, end);
 	}
 }
 
@@ -70,7 +114,6 @@ int		readlines(char *lineptr[], int maxlines)
 			return (-1);
 		else
 		{
-			//line[len] = '\0';
 			strcpy(str, line);
 			lineptr[nlines++] = str;
 		}
