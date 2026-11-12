@@ -7,6 +7,7 @@
 
 void	print_array(int mul_arr[ROW][COL]);
 int		day_of_year(int year, int month, int day);
+void	month_day(int year, int year_day, int *month, int *day);
 
 
 static int		daytab[ROW][COL] = {
@@ -16,23 +17,37 @@ static int		daytab[ROW][COL] = {
 
 int		main(void)
 {
+	int		month;
+	int		day;
+
 	print_array(daytab);
 	printf("Day of year: %d\n", day_of_year(2000, 1, 15));
+	month_day(2000, 46, &month, &day);
+	printf("Month: %d\n", month);
+	printf("Day: %d\n", day);
 }
 
 int		day_of_year(int year, int month, int day)
 {
 	int		leap;
 	int		i;
-	int		res;
 
 	i = 0;
-	res = 0;
 	leap = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 	while (++i <= month)
-		res += daytab[leap][i];
-	res += day;
-	return (res);
+		day += daytab[leap][i];
+	return (day);
+}
+
+void	month_day(int year, int year_day, int *month, int *day)
+{
+	int		leap;
+	
+	*month = 0;
+	leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+	while (year_day > daytab[leap][*month])
+		year_day -= daytab[leap][++(*month)];
+	*day = year_day;
 }
 
 void	print_array(int mul_arr[ROW][COL])
