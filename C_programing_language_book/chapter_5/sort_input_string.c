@@ -106,13 +106,12 @@ int		readlines(char *lineptr[], int maxlines)
 	int		nlines;
 	char	*str;
 	char	line[MAXLEN];
-//	char	*line;
 
 	nlines = 0;
 	while((len = ft_getline(line, MAXLEN)) >= 0)
 		if (nlines >= maxlines || (ft_malloc(&str, len) == 0))
 			return (-1);
-		else
+		else if (len > 0)
 		{
 			strcpy(str, line);
 			lineptr[nlines++] = str;
