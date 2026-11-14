@@ -9,11 +9,12 @@
 char	*lineptr[MAXLINES];
 
 int		readlines(char *lineptr[], int nlines);
-void	writelines(char *lineptr[], int nlines);
+void	writelines(char *lineptr[], int nlines, int numeric);
 void	ft_qsort(void *lineptr[], int left, int right,
 				int (*comp)(void *, void *));
-int		numcmp(const char *, const char *);
+int		numcmp(void *, void *);
 void	ft_swap(void *v[], int i, int j);
+int		ft_strcmp(void *s1, void *s2);
 
 int		main(int argc, char **argv)
 {
@@ -25,8 +26,8 @@ int		main(int argc, char **argv)
 		numeric = 1;
 	if ((nlines = readlines(lineptr, MAXLINES)) >= 0)
 	{
-		ft_qsort((void**)lineptr, 0, nlines - 1, (int (*)(void*, void*))(numeric ? numcmp : strcmp));
-		writelines(lineptr, nlines);
+		ft_qsort((void**)lineptr, 0, nlines - 1, (int (*)(void*, void*))(numeric ? numcmp : ft_strcmp));
+		writelines(lineptr, nlines, numeric);
 		return (0);
 	}
 	else
@@ -36,7 +37,12 @@ int		main(int argc, char **argv)
 	}
 }
 
-int		numcmp(const char *s1, const char *s2)
+int		ft_strcmp(void *s1, void *s2)
+{
+	return (strcmp(s1, s2));
+}
+
+int		numcmp(void *s1, void *s2)
 {
 	double	v1;
 	double	v2;
@@ -52,7 +58,7 @@ int		numcmp(const char *s1, const char *s2)
 		return (0);
 }
 
-void ft_swap(void *v[], int i, int j)
+void	ft_swap(void *v[], int i, int j)
 {
 	void *tmp;
 
@@ -143,11 +149,16 @@ int		readlines(char *lineptr[], int maxlines)
 	return (nlines);
 }
 
-void writelines(char *lineptr[], int nlines)
+void writelines(char *lineptr[], int nlines, int numeric)
 {
 	int		i;
 	
 	i = 0;
 	while (i < nlines)
-		printf("%s\n", lineptr[i++]);
-}
+	{
+		if (numeric)
+			printf("%.2lf\n", atof(lineptr[i++]));
+		else
+			printf("%s\n", lineptr[i++]);
+	}
+}	
